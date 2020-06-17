@@ -1,26 +1,57 @@
-# _To-do-list_
+# _Pig Dice Game_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _Pig Dice Game, 6/17/20_
 
 #### By _**{List of contributors}**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_A program where two users can play Pig dice against each other._
 
 ## Specifications
 
-Behavior: 
-input: 
-output:
+Score constructor
+  this.player1 array
+  this.player2 array
+  
+  if >100
+  
+  or if (1)
 
-Behavior: 
-input:    
-output:   
+function //[push the roll into array]
 
-Behavior:
-input: 
-output: 
+function that randomizes
+
+Player 1               ||   Player 2
+
+(click to roll) (hold) ||  (click to roll) (hold)
+
+(score)                 ||  (score)
+
+
+  var rand = Math.round(Math.random() * 6);
+
+var diceRoll = Math.floor( Math.random() * 6 ) +1;
+
+Behavior: Player 1 clicks the "Roll" button.  
+input: Click Roll Button
+output: Randomized value based on formula
+
+Behavior: Player 1 clicks the "Hold" button.
+input: Click Hold Button
+output: Total Score 
+
+Behavior: Player 2 clicks the "Roll" button.  
+input: Click Roll Button
+output: Randomized value based on formula
+
+Behavior: Player 2 clicks the "Hold" button.
+input: Click Hold Button
+output: Total Score 
+
+Behavior: Player reaches 100
+input: Click Roll Dice 
+output: Score === 100, "Winner" Message
 
 Behavior: 
 input:
