@@ -1,12 +1,15 @@
 function Score () {
-  this.player = [];
+  this.player1 = [];
+  this.player2 = [];
   this.player1Cache = [];
   this.player2Cache = [];
 }
 
-let pigGame = {
-  player1Score
-}
+// let pigGame = {
+  // player1Score: 0,
+  // player2Score: 0,
+  playerTurn: 1
+// }
 
 function diceRoll(player) {
   let value = Math.floor( Math.random() * 6 ) +1;
@@ -22,10 +25,22 @@ console.log(value);
 }
 
 function hold() {
+  let currentPlayer = pigGame.playerTurn;
   let cachedScore = addScore();
-  score.player1Cache.push(cachedScore);
-  score.player.splice(0, score.player.length);
+  if (currentPlayer === 1) {
+    score.player1Cache.push(cachedScore);
+  } else {
+    score.player2Cache.push(cachedScore);
+  }
+    switchPlayer ();
 }
+
+// function hold() {
+//   let cachedScore = addScore();
+//   score.player1Cache.push(cachedScore);
+//   score.player.splice(0, score.player.length);
+// }
+
 
 function addScore() {
   let sum =score.player.reduce((a, b) => a + b, 0)
@@ -48,6 +63,23 @@ function winner() {
   }
 }
 
+function switchPlayer () {
+  if (pigGame.playerTurn === 1) {
+    $("#player1Button").hide();
+    $("#player2Button").show();
+    pigGame.playerTurn = 2;
+  } else { 
+    $("#player1Button").hide();
+    $("#player2Button").show();
+    pigGame.playerTurn = 1;
+  }
+}
+
+// function resetGame() {
+//   pigGame.player1Score = 0;
+//   pigGame.player2Score = 0;
+// }
+
 let score = new Score ();
 
 $(document).ready(function() {
@@ -67,3 +99,5 @@ $(document).ready(function() {
     $("#player1-points").text(addTotalScore());
   });
 });
+
+
