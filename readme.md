@@ -57,6 +57,10 @@ Behavior:
 input:
 output: 
 
+
+//   // total points show
+//     += score.player1[score.player1.length-1]
+
 ## Setup/Installation Requirements
 
 * _This is a great place_
