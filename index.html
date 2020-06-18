@@ -1,48 +1,48 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/scripts.js"></script>
-    <title>Pig Dice Game</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Pig Dice Game</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="player-panel">
-            <div id="player1">
-              <b>Player 1:</b> Total Points: <span id="player1-points">0</span>
-            </div>
-            <br>
-            <div>
-              <p>Rolled Points: <span id="player1-rolled">0</span></p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <title>Pig Dice Game</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Pig Dice Game</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="player-panel">
+          <div id="player1">
+            <b>Player 1:</b> Total Points: <span id="player1-points">0</span>
           </div>
-          <div id="player1Button">
-          <button id="player1-roll" type="button" class="btn btn-primary">Roll</button> 
-          <button id="player1-hold" type="button" class="btn btn-success">Hold</button>
-        </div>    
-        <div class="col-md-6">
-          <div class="player-panel">
-            <div id="player2">
-              <b>Player 2:</b> Total Points: <span id="player2-points">0</span>
-            </div>
-            <br>
-            <div>
-              <p>Rolled Points: <span id="player2-rolled">0</span></p>
-            </div>
+          <br>
+          <div>
+            <p>Rolled Points: <span id="player1-rolled">0</span></p>
           </div>
-          <div id="player2Button">
-          <button id="player2-roll" type="button" class="btn btn-primary">Roll</button> 
-          <button id="player2-hold" type="button" class="btn btn-success">Hold</button>
         </div>
+        <div id="player1Button">
+        <button id="player1-roll" type="button" class="btn btn-primary">Roll</button> 
+        <button id="player1-hold" type="button" class="btn btn-success">Hold</button>
+      </div>    
+      <div class="col-md-6">
+        <div class="player-panel">
+          <div id="player2">
+            <b>Player 2:</b> Total Points: <span id="player2-points">0</span>
+          </div>
+          <br>
+          <div>
+            <p>Rolled Points: <span id="player2-rolled">0</span></p>
+          </div>
+        </div>
+        <div id="player2Button">
+        <button id="player2-roll" type="button" class="btn btn-primary">Roll</button> 
+        <button id="player2-hold" type="button" class="btn btn-success">Hold</button>
       </div>
+      <div id= reset><button id="reset-button" type="button" class="btn btn-success">Reset</button></div>
     </div>
-  </body>
+  </div>
+</body>
 </html>
-  
