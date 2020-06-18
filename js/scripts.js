@@ -113,7 +113,7 @@ function reset() {
 let score= new Score();
 function attachlistener(score) {
 
-  $("button#reset-button").click(function () {  //thos resets everything back 
+  $("button#reset-button").click(function () {  
     $("#reset").hide();
     score.player.splice(0, score.player.length)
     score.player2Cache.splice(0, score.player2Cache.length)
@@ -134,7 +134,15 @@ $(document).ready(function () {
 
   let score = new Score();
 
-  $("#player1-rolled").text(addScore(score));
+  $("#pair").click(function() {
+    $("#player1-panel").show();
+    $("#player2-panel").show();
+  }); //hide computer click button?  & vice versa
+
+  $("#computer").click(function() {
+    $("#player1-panel").show();
+    $("#computer-panel").show();
+  });
 
   $('button#player1-roll').click(function (event) {
     event.preventDefault();
@@ -166,7 +174,8 @@ $(document).ready(function () {
     hold(2, score);
     addTotalScore(2, score);
     $("#player2-points").text(addTotalScore(2, score));
-    computerPlayer(score);
   });
   attachlistener(score);
 });
+
+computerPlayer(score);
