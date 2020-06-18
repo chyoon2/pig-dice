@@ -5,11 +5,11 @@ function Score() {
 }
 
 
-function diceRoll() {
+function diceRoll(score) {
   let value = Math.floor(Math.random() * 6) + 1;
   if (value !== 1) {
     score.player.push(value);
-    addScore();
+    addScore(score);
   } else {
     score.player.push(0)
     score.player.splice(0, score.player.length)
@@ -18,8 +18,8 @@ function diceRoll() {
   }
 }
 
-function hold(whichPlayer) {
-  let cachedScore = addScore();
+function hold(whichPlayer, score) {
+  let cachedScore = addScore(score);
   if (whichPlayer === 1) {
     score.player1Cache.push(cachedScore);
     score.player.splice(0, score.player.length)
@@ -30,12 +30,12 @@ function hold(whichPlayer) {
   switchPlayer();
 }
 
-function addScore() {
+function addScore(score) {
   let sum = score.player.reduce((a, b) => a + b, 0)
   return sum;
 }
 
-function addTotalScore(whichPlayer) {
+function addTotalScore(whichPlayer, score) {
   if (whichPlayer === 1) {
     let totalSum = score.player1Cache.reduce((a, b) => a + b, 0)
     return totalSum
@@ -46,20 +46,20 @@ function addTotalScore(whichPlayer) {
   }
 }
 
-function winner(whichPlayer) {
+function winner(whichPlayer, score) {
   let mostRecentDiceRoll = score.player[score.player.length - 1];
-  if (addScore() >= 10) {
+  if (addScore(score) >= 10) {
     alert("winner winner");
     reset();
   }
   else if (whichPlayer === 1) {
-    if (parseInt(mostRecentDiceRoll + addTotalScore(1)) >= 10) {
+    if (parseInt(mostRecentDiceRoll + addTotalScore(1, score)) >= 10) {
       alert("winner winner");
       reset();
     }
   }
   else if (whichPlayer === 2) {
-    if (parseInt(mostRecentDiceRoll + addTotalScore(2)) >= 10) {
+    if (parseInt(mostRecentDiceRoll + addTotalScore(2, score)) >= 10) {
       alert("winner winner");
       reset();
     }
@@ -68,8 +68,7 @@ function winner(whichPlayer) {
 
 pigGame = {
   playerTurn: 1
-  player1 =1,
-  player2 = 2,
+  
 }
 
 function switchPlayer() {
@@ -90,10 +89,12 @@ function reset() {
   $("#reset").show();
 }
 
-let score = new Score();
 
-function attachlistener() {
+function attachlistener(score) {
+
   $("button#reset-button").click(function () {  //thos resets everything back 
+   
+
     $("#reset").hide();
     score.player.splice(0, score.player.length)
     score.player2Cache.splice(0, score.player2Cache.length)
@@ -110,36 +111,39 @@ function attachlistener() {
 }
 
 $(document).ready(function () {
+
+  let score = new Score();
+
   $('button#player1-roll').click(function (event) {
     event.preventDefault();
-    diceRoll();
-    $("#player1-rolled").text(addScore());
+    diceRoll(score);
+    $("#player1-rolled").text(addScore(score));
     $("#player1-roll").text(score.player[score.player.length - 1]);
-    addTotalScore(1);
-    winner(1);
+    addTotalScore(1, score);
+    winner(1, score);
   });
 
   $('button#player1-hold').click(function (event) {
     event.preventDefault();
-    hold(1);
-    addTotalScore(1);
-    $("#player1-points").text(addTotalScore(1));
+    hold(1, score);
+    addTotalScore(1, score);
+    $("#player1-points").text(addTotalScore(1,score));
   });
 
   $('button#player2-roll').click(function (event) {
     event.preventDefault();
-    diceRoll();
-    $("#player2-rolled").text(addScore());
+    diceRoll(score);
+    $("#player2-rolled").text(addScore(score));
     $("#player2-roll").text(score.player[score.player.length - 1]);
-    addTotalScore(2);
-    winner(2);
+    addTotalScore(2, score);
+    winner(2, score);
   });
 
   $('button#player2-hold').click(function (event) {
     event.preventDefault();
-    hold(2);
-    addTotalScore(2);
-    $("#player2-points").text(addTotalScore(2));
+    hold(2, score);
+    addTotalScore(2, score);
+    $("#player2-points").text(addTotalScore(2, score));
   });
-  attachlistener();
+  attachlistener(score);
 });
