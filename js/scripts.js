@@ -2,8 +2,8 @@ function Score() {
   this.player = [];
   this.player1Cache = [];
   this.player2Cache = [];
+  this.computerCache = [];
 }
-
 
 function diceRoll(score) {
   let value = Math.floor(Math.random() * 6) + 1;
@@ -15,6 +15,27 @@ function diceRoll(score) {
     score.player.splice(0, score.player.length)
     alert("Turn is over")
     switchPlayer();
+  }
+}
+
+  
+function computerPlayer(score) {
+  let roll1 = Math.floor(Math.random() * 6) + 1;
+  let roll2 = Math.floor(Math.random() * 6) + 1;
+
+  if (roll1 !== 1 && roll2 !==1 ) {
+    console.log(roll1)
+console.log(roll2)
+    let computerRolledScore = roll1 + roll2;
+    score.computerCache.push(computerRolledScore)
+  }
+  
+  let computerSum = score.computerCache.reduce((a, b) => a + b, 0)
+console.log(computerSum)
+  if (computerSum >= 10) {
+    alert("AI is GOD")
+    
+    reset();
   }
 }
 
@@ -89,16 +110,15 @@ function reset() {
   $("#reset").show();
 }
 
-
+let score= new Score();
 function attachlistener(score) {
 
   $("button#reset-button").click(function () {  //thos resets everything back 
-   
-
     $("#reset").hide();
     score.player.splice(0, score.player.length)
     score.player2Cache.splice(0, score.player2Cache.length)
     score.player1Cache.splice(0, score.player1Cache.length)
+    score.computerCache.splice(0, score.computerCache.length)
     $("#player1-rolled").text(0);
     $("#player1-roll").text(0);
     $("#player2-rolled").text(0);
@@ -113,6 +133,8 @@ function attachlistener(score) {
 $(document).ready(function () {
 
   let score = new Score();
+
+  $("#player1-rolled").text(addScore(score));
 
   $('button#player1-roll').click(function (event) {
     event.preventDefault();
@@ -144,6 +166,7 @@ $(document).ready(function () {
     hold(2, score);
     addTotalScore(2, score);
     $("#player2-points").text(addTotalScore(2, score));
+    computerPlayer(score);
   });
   attachlistener(score);
 });
