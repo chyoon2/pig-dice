@@ -2,7 +2,7 @@
 
 #### _Pig Dice Game, 6/17/20_
 
-#### By _**{List of contributors}**_
+#### By _**Chris Yoon**_
 
 ## Description
 
